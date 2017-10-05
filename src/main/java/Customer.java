@@ -72,10 +72,11 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.telNo = telNo;
+        createAccount();
     }
 
-    public static void createAccount(String[] args) {
-        String password = args[0];
+    public void createAccount() {
+        String password = "password";
         try {
             Class driver = Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -83,14 +84,10 @@ public class Customer {
         }
         try {
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/dbKBank", "root", password);
+                    "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("INSERT INTO ;");
-            while(resultSet.next()) {
-                String name = resultSet.getString("name");
-                System.out.println(name);
-
-            }
+            boolean success = statement.execute(
+                    String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(%s, %s, %s, %s, %s, %s);", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
