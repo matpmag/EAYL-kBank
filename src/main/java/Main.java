@@ -1,26 +1,25 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
-
+    static Scanner scanner;
+    //public static String dbPassword;
     public static void main(String[] args) {
-        String password = args[0];
+
         try {
+            scanner = new Scanner(System.in);
+            //String dbPassword = scanner.nextLine();
             Class driver = Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         try {
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/demo", "root", password);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT name FROM persons;");
-            while(resultSet.next()) {
-                String name = resultSet.getString("name");
-                System.out.println(name);
-
-            }
+                    "jdbc:mysql://localhost/dbKBank", "root", "password");
             connection.close();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
             e.printStackTrace();
         }
     }
