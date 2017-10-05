@@ -1,52 +1,43 @@
-import java.util.Date;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Customer {
 
     public String getForename() {
         return forename;
     }
-
     public void setForename(String forename) {
         this.forename = forename;
     }
-
     public String getSurname() {
         return surname;
     }
-
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
     public char getGender() {
         return gender;
     }
-
     public void setGender(char gender) {
         this.gender = gender;
     }
-
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
-
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public String getTelNo() {
         return telNo;
     }
-
     public void setTelNo(String telNo) {
         this.telNo = telNo;
     }
@@ -54,7 +45,7 @@ public class Customer {
     String forename;
     String surname;
     char gender;
-    Date dateOfBirth;
+    String dateOfBirth;
     String address;
     String telNo;
 
@@ -62,7 +53,7 @@ public class Customer {
             String forename,
             String surname,
             char gender,
-            Date dateOfBirth,
+            String dateOfBirth,
             String address,
             String telNo
     ){
@@ -87,7 +78,10 @@ public class Customer {
                     "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
             boolean success = statement.execute(
-                    String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(%s, %s, %s, %s, %s, %s);", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
+                    String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\");", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
+            if (success){
+                System.out.println("Account added successfully");
+            }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
