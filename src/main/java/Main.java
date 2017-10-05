@@ -11,7 +11,7 @@ public class Main {
         }
         try {
             Connection connection = DriverManager.getConnection(
-                    "jdbc:://localhost/dbKBank", "root", password);
+                    "jdbc:mysql://localhost/demo", "root", password);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT name FROM persons;");
             while(resultSet.next()) {
