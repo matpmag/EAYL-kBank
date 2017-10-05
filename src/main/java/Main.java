@@ -32,6 +32,34 @@ public class Main {
         welcome(args);
     }
 
+    private void findAccountBalance(int accountNo) {
+        String password = "password";
+        try {
+            Class driver = Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/dbKBank", "root", password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(
+                    "SELECT a.accountNumber, a.currentBalance, c.firstName, c.lastName FROM tableAccount AS a\n" +
+                    "        INNER JOIN tableCustomer AS c\n" +
+                    "        ON a.customerID = c.customerID;\n" +
+                    "        WHERE a.accountNumber = " + accountNo + ";");
+            while(resultSet.next()) {
+                String name = resultSet.getString("name");
+                System.out.println(name);
+
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void welcome(String[] args) {
         System.out.println("=== Welcome to kBank! ===");
         menu();
