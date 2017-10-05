@@ -77,11 +77,9 @@ public class Customer {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
-            boolean success = statement.execute(
+            statement.execute(
                     String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\");", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
-            if (success){
-                System.out.println("Account added successfully");
-            }
+            System.out.println("Account added successfully");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
