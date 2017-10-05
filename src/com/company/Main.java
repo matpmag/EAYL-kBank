@@ -57,10 +57,10 @@ public class Main {
                 if(isLetters(forename)){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid name:");
+                    System.out.print("Please enter a valid name:");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid name:");
+                System.out.print("Please enter a valid name:");
             }
         }
         System.out.print("Please enter your second name:");
@@ -72,10 +72,10 @@ public class Main {
                 if(isLetters(surname)){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid surname:");
+                    System.out.print("Please enter a valid surname:");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid surname:");
+                System.out.print("Please enter a valid surname:");
             }
         }
         System.out.print("Please enter your address:");
@@ -84,13 +84,13 @@ public class Main {
             try{
                 Scanner scanTwo = new Scanner(System.in);
                 address = scanTwo.nextLine();
-                if(isLetters(address)){
+                if(address.length() > 10){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid address:");
+                    System.out.print("Please enter a valid address:");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid address:");
+                System.out.print("Please enter a valid address:");
             }
         }
         System.out.print("Please enter your gender(m or f):");
@@ -103,11 +103,11 @@ public class Main {
                     gender = genderString[0];
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid gender(m or f):");
+                    System.out.print("Please enter a valid gender(m or f):");
                 }
 
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid gender(m or f):");
+                System.out.print("Please enter a valid gender(m or f):");
             }
         }
         System.out.print("Please enter your phone number:");
@@ -116,13 +116,13 @@ public class Main {
             try{
                 Scanner scanTwo = new Scanner(System.in);
                 telNo = scanTwo.nextLine();
-                if(isLetters(telNo)){
+                if(isNumbers(telNo)){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid phone number:");
+                    System.out.print("Please enter a valid phone number:");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid phone number:");
+                System.out.print("Please enter a valid phone number:");
             }
         }
 
@@ -136,10 +136,10 @@ public class Main {
                 if(year > 1850 && year < 2015){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid year(YYYY):");
+                    System.out.print("Please enter a valid year(YYYY):");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid year(YYYY):");
+                System.out.print("Please enter a valid year(YYYY):");
             }
         }
         System.out.print("Please enter your month of birth(MM):");
@@ -151,10 +151,10 @@ public class Main {
                 if(month > 0 && month < 13){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid month(MM):");
+                    System.out.print("Please enter a valid month(MM):");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid month(MM):");
+                System.out.print("Please enter a valid month(MM):");
             }
         }
         System.out.print("Please enter your day of birth(DD):");
@@ -166,10 +166,10 @@ public class Main {
                 if(day > 0 && day < 32){
                     activeOne = false;
                 } else {
-                    System.out.print("\nPlease enter a valid day(DD):");
+                    System.out.print("Please enter a valid day(DD):");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("\nPlease enter a valid day(DD):");
+                System.out.print("Please enter a valid day(DD):");
             }
         }
         dateOfBirth = new Date(year, month, day);
@@ -177,5 +177,8 @@ public class Main {
 
     public static boolean isLetters(String input){
         return input.matches("[a-zA-Z]+");
+    }
+    public static boolean isNumbers(String input){
+        return input.matches("[0-9]+");
     }
 }
