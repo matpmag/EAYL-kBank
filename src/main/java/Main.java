@@ -1,10 +1,9 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 import jdk.nashorn.internal.ir.WhileNode;
 
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -81,7 +80,7 @@ public class Main {
             while (optionActive)
                 try {
                     optionNo = scan.nextInt();
-                    if (optionNo > 0 && optionNo < 2) {
+                    if (optionNo > 0 && optionNo < 3) {
                         optionActive = false;
                         switch (optionNo) {
                             case 0:
@@ -89,9 +88,21 @@ public class Main {
                             case 1:
                                 createAccount();
                                 break;
+                            case 2:
+                                new Customer(
+                                        "Matthew",
+                                        "Maguire",
+                                        'm',
+                                        "1998-05-02",
+                                        "363 Upper Newtownards Road",
+                                        "07763285190"
+                                );
+                                break;
+                            case 3:
+                                System.out.print("\nPlease enter a valid option:");
                         }
                     } else {
-                        System.out.print("\nPlease enter a valid option:");
+
                     }
                 } catch (InputMismatchException e) {
                     System.out.print("\nPlease enter a valid option:");
@@ -102,8 +113,7 @@ public class Main {
 
     public static Customer createAccount() {
         boolean activeOne = true;
-        String forename = "", surname = "", address = "", telNo = "";
-        Date dateOfBirth = new Date();
+        String forename = "", surname = "", address = "", telNo = "", dateOfBirth;
         char gender = '0';
         System.out.print("Please enter your first name:");
         while (activeOne) {
@@ -228,7 +238,7 @@ public class Main {
                 System.out.print("Please enter a valid day(DD):");
             }
         }
-        dateOfBirth = new Date(year, month, day);
+        dateOfBirth = String.format("%s-%s-%s",year, month, day);
 
         return new Customer(
             forename,
