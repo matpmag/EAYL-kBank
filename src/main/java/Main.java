@@ -289,6 +289,12 @@ public class Main {
         
     }
 
+    public static void makeSomeNoise(){
+        for(int i=0; i < 1000; i++){
+            System.out.println("\n\n\n\n");
+        }
+    }
+
     public static boolean isLetters(String input) {
         return input.matches("[a-zA-Z]+");
     }
