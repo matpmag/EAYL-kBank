@@ -104,9 +104,11 @@ public class Main {
                             System.out.print("\nPlease enter a valid option:");
                     }
 
+
                 } catch (InputMismatchException e) {
                     System.out.print("\nPlease enter a valid option:");
                 }
+
 
         }
     }
@@ -264,6 +266,7 @@ public class Main {
                 telNo,
                 payment
         );
+
     }
 
     public static void viewBalance(){

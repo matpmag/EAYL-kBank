@@ -98,7 +98,6 @@ public class Customer {
                             + " VALUES(LAST_INSERT_ID(), %s);",
                     initialPayment)
             );
-
             System.out.println("Account added successfully");
             connection.close();
         } catch (SQLException e) {
