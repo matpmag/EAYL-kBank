@@ -316,6 +316,7 @@ public class Main {
                 System.out.println("User '" + accountNo + "':\n" + firstName + " " + lastName + "your balance is: £" + balance);
             }
             connection.close();
+            makeSomeNoise();
         } catch (SQLException e) {
             e.printStackTrace();
         }
