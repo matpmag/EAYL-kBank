@@ -48,6 +48,7 @@ public class Customer {
     String dateOfBirth;
     String address;
     String telNo;
+    Double initialPayment;
 
     public Customer(
             String forename,
@@ -55,7 +56,8 @@ public class Customer {
             char gender,
             String dateOfBirth,
             String address,
-            String telNo
+            String telNo,
+            Double initialPayment
     ){
         this.forename = forename;
         this.surname = surname;
@@ -63,6 +65,7 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.telNo = telNo;
+        this.initialPayment = initialPayment;
         createAccount();
     }
 
@@ -78,10 +81,24 @@ public class Customer {
                     "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
             statement.execute(
-                    String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\");", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
-            for(int i=0; i < 1000; i++){
-                System.out.println("");
-            }
+                    String.format(
+                                    " INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone)"
+                                    + " VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\")",
+                            getForename(),
+                            getSurname(),
+                            String.valueOf(getGender()),
+                            getDateOfBirth().toString(),
+                            getAddress(),
+                            getTelNo()
+                    ));
+            Statement statementAccount = connection.createStatement();
+            statementAccount.execute(
+                    String.format(
+                            " INSERT INTO tableAccount(customerID, currentBalance)"
+                            + " VALUES(LAST_INSERT_ID(), %s);",
+                    initialPayment)
+            );
+            Main.makeSomeNoise();
             System.out.println("Account added successfully");
             connection.close();
         } catch (SQLException e) {
