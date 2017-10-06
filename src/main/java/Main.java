@@ -80,7 +80,6 @@ public class Main {
             while (optionActive)
                 try {
                     optionNo = scan.nextInt();
-                    if (optionNo > 0 && optionNo < 3) {
                         optionActive = false;
                         switch (optionNo) {
                             case 0:
@@ -98,15 +97,14 @@ public class Main {
                                         "07763285190"
                                 );
                                 break;
-                            case 3:
+                            default:
                                 System.out.print("\nPlease enter a valid option:");
+                                break;
                         }
-                    } else {
-
-                    }
                 } catch (InputMismatchException e) {
                     System.out.print("\nPlease enter a valid option:");
                 }
+
 
         }
     }
@@ -248,6 +246,7 @@ public class Main {
             address,
             telNo
         );
+
     }
 
     public static boolean isLetters(String input) {
