@@ -300,11 +300,17 @@ public class Main {
             Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT accountNumber, currentBalance FROM tableAccount WHERE accountNumber = " + accountID + ";");
+            ResultSet resultSet = statement.executeQuery("SELECT a.accountNumber, a.currentBalance, c.firstName, c.lastName " +
+                    "FROM tableAccount AS a " +
+                    "INNER JOIN tableCustomer AS c " +
+                    "ON a.customerID = c.customerID " +
+                    "WHERE a.customerID = " + accountID + ";");
             while(resultSet.next()) {
-                String accountNo = resultSet.getString("accountNumber");
-                String balance = resultSet.getString("currentBalance");
-                System.out.println("User '" + accountNo + "', your balance is: £" + balance);
+                String accountNo = resultSet.getString("a.accountNumber");
+                String balance = resultSet.getString("a.currentBalance");
+                String firstName = resultSet.getString("c.firstName");
+                String lastName = resultSet.getString("c.lastName");
+                System.out.println("User '" + accountNo + "':\n" + firstName + " " + lastName + "your balance is: £" + balance);
             }
             connection.close();
         } catch (SQLException e) {
