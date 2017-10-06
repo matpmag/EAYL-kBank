@@ -78,7 +78,25 @@ public class Customer {
                     "jdbc:mysql://localhost/dbKBank", "root", "password");
             Statement statement = connection.createStatement();
             statement.execute(
-                    String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\");", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
+                    String.format(
+                                    " INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone)"
+                                    + " VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\")",
+                            getForename(),
+                            getSurname(),
+                            String.valueOf(getGender()),
+                            getDateOfBirth().toString(),
+                            getAddress(),
+                            getTelNo(),
+                            0.00
+                    ));
+            Statement statementAccount = connection.createStatement();
+            statementAccount.execute(
+                    String.format(
+                            " INSERT INTO tableAccount(customerID, currentBalance)"
+                            + " VALUES(LAST_INSERT_ID(), %s);",
+                    0.00)
+            );
+
             System.out.println("Account added successfully");
             connection.close();
         } catch (SQLException e) {
