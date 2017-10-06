@@ -248,7 +248,7 @@ public class Main {
             try {
                 scanner  = new Scanner(System.in);
                 payment = scanner.nextInt();
-                if (payment < 1000 || payment >= 0) {
+                if (payment < 1000 && payment >= 0) {
                     activeOne = false;
                 } else {
                     System.out.print("Please enter a valid payment(£1000 max):");
@@ -277,8 +277,9 @@ public class Main {
             try {
                 scanner = new Scanner(System.in);
                 accountnumber = scanner.nextInt();
-                if (accountnumber < 1000 || accountnumber >= 0) {
+                if (accountnumber < 1000 && accountnumber >= 0) {
                     activeOne = false;
+                    findAccount(accountnumber);
                 } else {
                     System.out.print("Please enter a valid account number:");
                 }
@@ -287,6 +288,28 @@ public class Main {
             }
         }
         
+    }
+
+    private static void findAccount( int accountID ) {
+        try {
+            Class driver = Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/dbKBank", "root", "password");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT accountNumber, currentBalance FROM tableAccount WHERE accountNumber = " + accountID + ";");
+            while(resultSet.next()) {
+                String accountNo = resultSet.getString("accountNumber");
+                String balance = resultSet.getString("currentBalance");
+                System.out.println("User '" + accountNo + "', your balance is: £" + balance);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void makeSomeNoise(){
