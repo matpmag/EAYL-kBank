@@ -44,4 +44,8 @@ $ Do some other stuff?
 However, it is recommended you should use an IDE like IntelliJ.
 Use the `KBank` folder as the project root and import as a Maven project.
 
+## Hidden Commands
+
+If the user happens to be Matthew Maguire and shares all  the same details as the co-creater of this software, you may enter your details simply by pressing 3 on the menu.
+
 ###### Thanks peter :^)
