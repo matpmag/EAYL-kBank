@@ -44,10 +44,10 @@ public class Main {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT a.accountNumber, a.currentBalance, c.firstName, c.lastName FROM tableAccount AS a\n" +
-                    "        INNER JOIN tableCustomer AS c\n" +
-                    "        ON a.customerID = c.customerID;\n" +
-                    "        WHERE a.accountNumber = " + accountNo + ";");
-            while(resultSet.next()) {
+                            "        INNER JOIN tableCustomer AS c\n" +
+                            "        ON a.customerID = c.customerID;\n" +
+                            "        WHERE a.accountNumber = " + accountNo + ";");
+            while (resultSet.next()) {
                 String name = resultSet.getString("name");
                 System.out.println(name);
 
@@ -71,6 +71,7 @@ public class Main {
                     "========= Menu ==========\n" +
                     "0 - Exit the kBank App\n" +
                     "1 - Create a new account\n" +
+                    "2 - View account balance\n" +
                     "========= Menu ==========\n\n" +
                     "Please enter an option:");
 
@@ -80,30 +81,29 @@ public class Main {
             while (optionActive)
                 try {
                     optionNo = scan.nextInt();
-                    if (optionNo > 0 && optionNo < 3) {
-                        optionActive = false;
-                        switch (optionNo) {
-                            case 0:
-                                System.exit(0);
-                            case 1:
-                                createAccount();
-                                break;
-                            case 2:
-                                new Customer(
-                                        "Matthew",
-                                        "Maguire",
-                                        'm',
-                                        "1998-05-02",
-                                        "363 Upper Newtownards Road",
-                                        "07763285190"
-                                );
-                                break;
-                            case 3:
-                                System.out.print("\nPlease enter a valid option:");
-                        }
-                    } else {
-
+                    optionActive = false;
+                    switch (optionNo) {
+                        case 0:
+                            System.exit(0);
+                        case 1:
+                            createAccount();
+                            break;
+                        case 2: viewBalance(); break;
+                        case 3:
+                            new Customer(
+                                    "Matthew",
+                                    "Maguire",
+                                    'm',
+                                    "1998-05-02",
+                                    "363 Upper Newtownards Road",
+                                    "07763285190",
+                                    (double) 0
+                            );
+                            break;
+                        default:
+                            System.out.print("\nPlease enter a valid option:");
                     }
+
                 } catch (InputMismatchException e) {
                     System.out.print("\nPlease enter a valid option:");
                 }
@@ -115,6 +115,7 @@ public class Main {
         boolean activeOne = true;
         String forename = "", surname = "", address = "", telNo = "", dateOfBirth;
         char gender = '0';
+        double payment = 0;
         System.out.print("Please enter your first name:");
         while (activeOne) {
             try {
@@ -239,15 +240,50 @@ public class Main {
             }
         }
         dateOfBirth = String.format("%s-%s-%s", year, month, day);
-
+        System.out.print("Please enter the amount of your initial payment(£1000 max):");
+        activeOne = true;
+        while (activeOne) {
+            try {
+                Scanner scanTwo = new Scanner(System.in);
+                payment = scanTwo.nextInt();
+                if (payment < 1000 || payment >= 0) {
+                    activeOne = false;
+                } else {
+                    System.out.print("Please enter a valid payment(£1000 max):");
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Please enter a valid payment(£1000 max):");
+            }
+        }
         return new Customer(
-            forename,
-            surname,
-            gender,
-            dateOfBirth,
-            address,
-            telNo
+                forename,
+                surname,
+                gender,
+                dateOfBirth,
+                address,
+                telNo,
+                payment
         );
+    }
+
+    public static void viewBalance(){
+        System.out.println("Please enter your account number:");
+        int accountnumber;
+        boolean activeOne = true;
+        while (activeOne) {
+            try {
+                Scanner scanTwo = new Scanner(System.in);
+                accountnumber = scanTwo.nextInt();
+                if (accountnumber < 1000 || accountnumber >= 0) {
+                    activeOne = false;
+                } else {
+                    System.out.print("Please enter a valid account number:");
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Please enter a valid account number:");
+            }
+        }
+        
     }
 
     public static boolean isLetters(String input) {

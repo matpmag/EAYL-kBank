@@ -48,6 +48,7 @@ public class Customer {
     String dateOfBirth;
     String address;
     String telNo;
+    Double initialPayment;
 
     public Customer(
             String forename,
@@ -55,7 +56,8 @@ public class Customer {
             char gender,
             String dateOfBirth,
             String address,
-            String telNo
+            String telNo,
+            Double initialPayment
     ){
         this.forename = forename;
         this.surname = surname;
@@ -63,6 +65,7 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.telNo = telNo;
+        this.initialPayment = initialPayment;
         createAccount();
     }
 
@@ -86,15 +89,14 @@ public class Customer {
                             String.valueOf(getGender()),
                             getDateOfBirth().toString(),
                             getAddress(),
-                            getTelNo(),
-                            0.00
+                            getTelNo()
                     ));
             Statement statementAccount = connection.createStatement();
             statementAccount.execute(
                     String.format(
                             " INSERT INTO tableAccount(customerID, currentBalance)"
                             + " VALUES(LAST_INSERT_ID(), %s);",
-                    0.00)
+                    initialPayment)
             );
 
             System.out.println("Account added successfully");
