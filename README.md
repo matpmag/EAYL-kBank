@@ -1,6 +1,6 @@
-# kBank
+# Welcome to kBank!
 
-A bank management system allowing users to access their accounts.
+kBank is a bank management system allowing users to access their accounts.
 
 ## User stories
 
@@ -28,22 +28,20 @@ A bank management system allowing users to access their accounts.
 
 ## Usage
 
-1. Populate the database
+1. Create the database
 
 ```
 $ mysql -uroot -ppassword
-mysql> source create.sql
-mysql> source insert.sql
+mysql> source dbSetup.sql
+mysql> source dbSetupFK.sql
 ```
 2. Build and run the project
 
 ```
-$ cd KBank-Frontend
-$ mvn clean package
-$ cd target/classes/com/kbank
-$ java Main
+$ cd ~IdealProjects/kBank/
+$ Do some other stuff?
 ```
 However, it is recommended you should use an IDE like IntelliJ.
-Use the `KBank-Frontend` folder as the project root and import as a Maven project.
+Use the `KBank` folder as the project root and import as a Maven project.
 
 ###### Thanks peter :^)
