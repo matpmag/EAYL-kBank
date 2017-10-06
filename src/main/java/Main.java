@@ -121,8 +121,8 @@ public class Main {
         System.out.print("Please enter your first name:");
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                forename = scanTwo.nextLine();
+                scanner = new Scanner(System.in);
+                forename = scanner.nextLine();
                 if (isLetters(forename)) {
                     activeOne = false;
                 } else {
@@ -136,8 +136,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                surname = scanTwo.nextLine();
+                 scanner = new Scanner(System.in);
+                surname = scanner.nextLine();
                 if (isLetters(surname)) {
                     activeOne = false;
                 } else {
@@ -151,8 +151,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                address = scanTwo.nextLine();
+                 scanner = new Scanner(System.in);
+                address = scanner.nextLine();
                 if (address.length() > 10) {
                     activeOne = false;
                 } else {
@@ -166,8 +166,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                char[] genderString = scanTwo.nextLine().toLowerCase().toCharArray();
+                scanner = new Scanner(System.in);
+                char[] genderString = scanner.nextLine().toLowerCase().toCharArray();
                 if (genderString.length == 1 && (genderString[0] == 'm' || genderString[0] == 'f')) {
                     gender = genderString[0];
                     activeOne = false;
@@ -183,8 +183,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                telNo = scanTwo.nextLine();
+                 scanner = new Scanner(System.in);
+                telNo = scanner.nextLine();
                 if (isNumbers(telNo)) {
                     activeOne = false;
                 } else {
@@ -200,8 +200,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                year = scanTwo.nextInt();
+                scanner = new Scanner(System.in);
+                year = scanner.nextInt();
                 if (year > 1850 && year < 2015) {
                     activeOne = false;
                 } else {
@@ -215,8 +215,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                month = scanTwo.nextInt();
+                scanner = new Scanner(System.in);
+                month = scanner.nextInt();
                 if (month > 0 && month < 13) {
                     activeOne = false;
                 } else {
@@ -230,8 +230,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                day = scanTwo.nextInt();
+                scanner = new Scanner(System.in);
+                day = scanner.nextInt();
                 if (day > 0 && day < 32) {
                     activeOne = false;
                 } else {
@@ -246,8 +246,8 @@ public class Main {
         activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                payment = scanTwo.nextInt();
+                scanner  = new Scanner(System.in);
+                payment = scanner.nextInt();
                 if (payment < 1000 || payment >= 0) {
                     activeOne = false;
                 } else {
@@ -275,8 +275,8 @@ public class Main {
         boolean activeOne = true;
         while (activeOne) {
             try {
-                Scanner scanTwo = new Scanner(System.in);
-                accountnumber = scanTwo.nextInt();
+                scanner = new Scanner(System.in);
+                accountnumber = scanner.nextInt();
                 if (accountnumber < 1000 || accountnumber >= 0) {
                     activeOne = false;
                 } else {
