@@ -238,7 +238,7 @@ public class Main {
                 System.out.print("Please enter a valid day(DD):");
             }
         }
-        dateOfBirth = String.format("%s-%s-%s",year, month, day);
+        dateOfBirth = String.format("%s-%s-%s", year, month, day);
 
         return new Customer(
             forename,
