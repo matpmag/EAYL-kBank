@@ -60,6 +60,7 @@ public class Main {
     }
 
     public static void welcome(String[] args) {
+        makeSomeNoise();
         System.out.println("=== Welcome to kBank! ===");
         menu();
     }
@@ -270,7 +271,7 @@ public class Main {
     }
 
     public static void viewBalance(){
-        System.out.println("Please enter your account number:");
+        System.out.print("Please enter your account number(Press 0 to exit):");
         int accountnumber;
         boolean activeOne = true;
         while (activeOne) {
@@ -280,11 +281,13 @@ public class Main {
                 if (accountnumber < 1000 && accountnumber >= 0) {
                     activeOne = false;
                     findAccount(accountnumber);
+                } else if(accountnumber == 0) {
+                    menu();
                 } else {
-                    System.out.print("Please enter a valid account number:");
+                    System.out.print("Please enter a valid account number(Press 0 to exit):");
                 }
             } catch (InputMismatchException e) {
-                System.out.print("Please enter a valid account number:");
+                System.out.print("Please enter a valid account number(Press 0 to exit):");
             }
         }
         
