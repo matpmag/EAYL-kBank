@@ -79,6 +79,9 @@ public class Customer {
             Statement statement = connection.createStatement();
             statement.execute(
                     String.format("INSERT INTO tableCustomer(firstName, lastName, gender, dateOfBirth, address, telephone) VALUES(\"%s\", \"%s\", \'%s\', \"%s\", \"%s\", \"%s\");", getForename(), getSurname(), String.valueOf(getGender()), getDateOfBirth().toString(), getAddress(), getTelNo()));
+            for(int i=0; i < 1000; i++){
+                System.out.println("");
+            }
             System.out.println("Account added successfully");
             connection.close();
         } catch (SQLException e) {
